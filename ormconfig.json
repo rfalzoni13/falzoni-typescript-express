@@ -1,0 +1,13 @@
+{
+    "type": "mongodb",
+    "host": "localhost",
+    "port": 27017,
+    "database": "falzoninode",
+    "synchronize": true,
+    "entities": [
+        "src/models/**/*.js"
+    ],
+    "cli": {
+        "entitiesDir": "src/models"
+    }
+}
