@@ -1,5 +1,5 @@
-import { Column, PrimaryGeneratedColumn } from "typeorm";
-import { Product } from "../../../interfaces/entities/stock/product";
+import Product from "../../../interfaces/entities/stock/product";
+import { Column, PrimaryColumn, PrimaryGeneratedColumn } from "typeorm";
 import { ApiModel, ApiModelProperty } from "swagger-express-ts";
 import { UUID } from "crypto";
 
@@ -12,7 +12,7 @@ export class ProductImpl implements Product {
         description: "Id de registro do produto",
         example: 'xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx'
     })
-    @PrimaryGeneratedColumn()
+    @PrimaryColumn()
     id?: UUID
     
     @ApiModelProperty({

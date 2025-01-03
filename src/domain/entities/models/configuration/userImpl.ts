@@ -1,4 +1,4 @@
-import { Column, PrimaryGeneratedColumn } from "typeorm";
+import { Column, PrimaryColumn, PrimaryGeneratedColumn } from "typeorm";
 import User from "../../../interfaces/entities/configuration/user";
 import { ApiModel, ApiModelProperty } from "swagger-express-ts";
 import { UUID } from "crypto";
@@ -12,7 +12,7 @@ export class UserImpl implements User {
         description: "Id do Usuário",
         example: 'xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx'
     })
-    @PrimaryGeneratedColumn()
+    @PrimaryColumn()
     id?: UUID
 
     @ApiModelProperty({
@@ -39,7 +39,6 @@ export class UserImpl implements User {
 
     @ApiModelProperty({
         description: "Senha do Usuário",
-        required: true,
         example: "123456"
     })
     @Column({
@@ -75,7 +74,8 @@ export class UserImpl implements User {
         example: "USER"
     })
     @Column({
-        length: 20
+        length: 20,
+        nullable: false
     })
     public role?: string
 }

@@ -1,11 +1,12 @@
-import { inject } from "inversify";
+import Product from "../../domain/interfaces/entities/stock/product";
 import BaseController from "../base/baseController";
 import BaseControllerImpl from "../base/baseControllerImpl";
-import { TYPES } from "../../di/types";
-import { controller, httpDelete, httpGet, httpPost, httpPut } from "inversify-express-utils";
 import ProductService from "../../domain/interfaces/services/stock/productService";
-import { Product } from "../../domain/interfaces/entities/stock/product";
+import { controller, httpDelete, httpGet, httpPost, httpPut } from "inversify-express-utils";
+import { inject } from "inversify";
+import { TYPES } from "../../di/types";
 import { ApiOperationDelete, ApiOperationGet, ApiOperationPost, ApiOperationPut, ApiPath } from "swagger-express-ts";
+import { ProductDto } from "../../domain/dto/stock/productDto";
 
 @ApiPath({
     path: "/api/product",
@@ -13,7 +14,7 @@ import { ApiOperationDelete, ApiOperationGet, ApiOperationPost, ApiOperationPut,
     security: { basicAuth: [] }
 })
 @controller('/product')
-export default class ProductController extends BaseControllerImpl<Product> implements BaseController {
+export default class ProductController extends BaseControllerImpl<ProductDto, Product> implements BaseController {
     constructor(@inject(TYPES.ProductService) service: ProductService) {
         super(service)
     }
@@ -103,7 +104,7 @@ export default class ProductController extends BaseControllerImpl<Product> imple
             400: { description: "Bad Request" }
         }
     })
-    @httpDelete('/delete')
+    @httpDelete('/delete/:id')
     public async delete(req: any, res: any, next: any): Promise<any> {
         return super.delete(req, res, next)
     }

@@ -1,13 +1,14 @@
 import { UUID } from "crypto"
+import { ObjectId } from "mongodb"
 
-export default interface BaseRepository<T> {
-    getAll(): Promise<T[]>
+export default interface BaseRepository<TEntity> {
+    getAll(): Promise<TEntity[]>
 
-    get(id: UUID): Promise<T>
+    get(id: UUID): Promise<TEntity>
 
-    create(obj: T): Promise<void>
+    create(obj: TEntity): Promise<void>
     
-    update(obj: T): Promise<void>
+    update(obj: TEntity): Promise<void>
 
     delete(id: UUID): Promise<void>
 }

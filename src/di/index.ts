@@ -11,34 +11,53 @@ import ProductController from "../controllers/stock/productController"
 import { InversifyExpressServer } from "inversify-express-utils"
 import { UserServiceImpl } from "../services/configuration/userServiceImpl"
 import UserRepository from "../domain/interfaces/repositories/configuration/userRepository"
-import UserRepositoryImpl from "../repositories/configuration/userRepositoryImpl"
 import CustomerRepository from "../domain/interfaces/repositories/register/customerRepository"
-import CustomerRepositoryImpl from "../repositories/register/customerRepositoryImpl"
 import ProductRepository from "../domain/interfaces/repositories/stock/productRepository"
-import ProductRepositoryImpl from "../repositories/stock/productRepositoryImpl"
+import UserRepositoryImpl from "../repositories/sql/configuration/userRepositoryImpl"
+import CustomerRepositoryImpl from "../repositories/sql/register/customerRepositoryImpl"
+import ProductRepositoryImpl from "../repositories/sql/stock/productRepositoryImpl"
+import GlobalConfiguration from "../utils/globalConfiguration"
+import UserMongoRepositoryImpl from "../repositories/mongo/configuration/userMongoRepositoryImpl"
+import CustomerMongoRepositoryImpl from "../repositories/mongo/register/customerMongoRepositoryImpl"
+import ProductMongoRepositoryImpl from "../repositories/mongo/stock/productMongoRepositoryImpl"
 
+const container = new Container()
+
+function getRepositoryContainer(): void {
+
+    if(GlobalConfiguration.dbDriver === "mongodb") {
+        // MongoDb
+        container.bind<UserRepository>(TYPES.UserRepository).to(UserMongoRepositoryImpl).inTransientScope()
+        container.bind<CustomerRepository>(TYPES.CustomerRepository).to(CustomerMongoRepositoryImpl).inTransientScope()
+        container.bind<ProductRepository>(TYPES.ProductRepository).to(ProductMongoRepositoryImpl).inTransientScope()
+    } else {
+        // SQL
+        container.bind<UserRepository>(TYPES.UserRepository).to(UserRepositoryImpl).inTransientScope()
+        container.bind<CustomerRepository>(TYPES.CustomerRepository).to(CustomerRepositoryImpl).inTransientScope()
+        container.bind<ProductRepository>(TYPES.ProductRepository).to(ProductRepositoryImpl).inTransientScope()
+    }
+}
 
 function getContainer(): Container {
-    const container = new Container()
     // User 
     container.bind<UserController>(TYPES.UserController).to(UserController).inTransientScope()
     container.bind<UserService>(TYPES.UserService).to(UserServiceImpl).inTransientScope()
-    container.bind<UserRepository>(TYPES.UserRepository).to(UserRepositoryImpl).inTransientScope()
-
+    
     // Customer
     container.bind<CustomerController>(TYPES.CustomerController).to(CustomerController).inTransientScope()
     container.bind<CustomerService>(TYPES.CustomerService).to(CustomerServiceImpl).inTransientScope()
-    container.bind<CustomerRepository>(TYPES.CustomerRepository).to(CustomerRepositoryImpl).inTransientScope()
 
     // Product
     container.bind<ProductController>(TYPES.ProductController).to(ProductController).inTransientScope()
-    container.bind<ProductService>(TYPES.ProductService).to(ProductServiceImpl).inTransientScope()
-    container.bind<ProductRepository>(TYPES.ProductRepository).to(ProductRepositoryImpl).inTransientScope()
+    container.bind<ProductService>(TYPES.ProductService).to(ProductServiceImpl).inTransientScope()    
+
+    getRepositoryContainer()
+
     return container
 }
 
 const dependencyInjection = {
-    getServer: function(): InversifyExpressServer {
+    getInversifyServer: function(): InversifyExpressServer {
         const container = getContainer()
         return new InversifyExpressServer(container, null, { rootPath: '/api'})
     }

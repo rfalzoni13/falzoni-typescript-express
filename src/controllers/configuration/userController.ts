@@ -5,6 +5,7 @@ import BaseControllerImpl from "../base/baseControllerImpl";
 import UserService from "../../domain/interfaces/services/configuration/userService";
 import User from "../../domain/interfaces/entities/configuration/user";
 import { ApiOperationDelete, ApiOperationGet, ApiOperationPost, ApiOperationPut, ApiPath } from "swagger-express-ts";
+import { UserDto } from "../../domain/dto/configuration/userDto";
 
 @ApiPath({
     path: "/api/user",
@@ -12,7 +13,7 @@ import { ApiOperationDelete, ApiOperationGet, ApiOperationPost, ApiOperationPut,
     security: { basicAuth: [] }
 })
 @controller('/user')
-export default class UserController extends BaseControllerImpl<User> {
+export default class UserController extends BaseControllerImpl<UserDto, User> {
     constructor(@inject(TYPES.UserService) service: UserService) {
         super(service)
     }
@@ -102,7 +103,7 @@ export default class UserController extends BaseControllerImpl<User> {
             400: { description: "Bad Request" }
         }
     })
-    @httpDelete('/delete')
+    @httpDelete('/delete/:id')
     public async delete(req: any, res: any, next: any): Promise<any> {
         return super.delete(req, res, next)
     }

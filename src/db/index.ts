@@ -4,7 +4,7 @@ import GlobalConfiguration from "../utils/globalConfiguration";
 GlobalConfiguration.loadConfiguration()
 
 function getDatabaseDriver(env: string | undefined) {
-    switch(env) {
+    switch (env) {
         case "mysql":
             return "mysql"
         case "mongo":
@@ -18,9 +18,21 @@ function getDatabaseDriver(env: string | undefined) {
         case "oracledb":
         case "or":
             return "oracle"
+        case "sqlite":
+            return "sqlite"
         default:
             return "mssql"
     }
+}
+
+function setEntityPath(): string[] {
+    const paths: string[] = []
+
+    paths.push("src/domain/entities/sql/**/*.ts")
+    if (GlobalConfiguration.dbDriver === "mongodb")
+        paths.push("src/domain/entities/mongo/**/*.ts")
+
+    return paths
 }
 
 export const AppDataSource = new DataSource({
@@ -28,7 +40,8 @@ export const AppDataSource = new DataSource({
     host: GlobalConfiguration.dbHost,
     port: GlobalConfiguration.dbPort,
     database: GlobalConfiguration.dbName,
-    synchronize: true,
-    logging: false,
-    entities: ["src/domain/**/*.ts"]
+    dropSchema: GlobalConfiguration.dbDrop,
+    synchronize: GlobalConfiguration.dbSync,
+    logging: GlobalConfiguration.dbLogging,
+    entities: setEntityPath()
 })

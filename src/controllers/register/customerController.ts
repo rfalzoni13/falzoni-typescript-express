@@ -1,10 +1,11 @@
+import Customer from "../../domain/interfaces/entities/register/customer";
 import { inject } from "inversify";
 import { TYPES } from "../../di/types";
 import { controller, httpDelete, httpGet, httpPost, httpPut } from "inversify-express-utils";
 import BaseControllerImpl from "../base/baseControllerImpl";
 import CustomerService from "../../domain/interfaces/services/register/customerService";
-import { Customer } from "../../domain/interfaces/entities/register/customer";
 import { ApiOperationDelete, ApiOperationGet, ApiOperationPost, ApiOperationPut, ApiPath } from "swagger-express-ts";
+import { CustomerDto } from "../../domain/dto/register/customerDto";
 
 @ApiPath({
     path: "/api/customer",
@@ -12,7 +13,7 @@ import { ApiOperationDelete, ApiOperationGet, ApiOperationPost, ApiOperationPut,
     security: { basicAuth: [] }
 })
 @controller('/customer')
-export default class CustomerController extends BaseControllerImpl<Customer> {
+export default class CustomerController extends BaseControllerImpl<CustomerDto, Customer> {
     constructor(@inject(TYPES.CustomerService) service: CustomerService) {
         super(service)
     }
@@ -102,7 +103,7 @@ export default class CustomerController extends BaseControllerImpl<Customer> {
             400: { description: "Bad Request" }
         }
     })
-    @httpDelete('/delete')
+    @httpDelete('/delete/:id')
     public async delete(req: any, res: any, next: any): Promise<any> {
         return super.delete(req, res, next)
     }

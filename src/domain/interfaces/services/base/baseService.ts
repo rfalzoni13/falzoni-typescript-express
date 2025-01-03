@@ -1,15 +1,15 @@
-import { UUID } from "crypto";
-import { ObjectId } from "mongodb";
+import { BaseDto } from "../../../dto/base/baseDto";
+import { BaseEntity } from "../../entities/base/baseEntity";
 
-export default interface BaseService<T> {
+export default interface BaseService<TDto extends BaseDto, TEntity extends BaseEntity> {
     
-    getAll(): Promise<T[]>
+    getAll(): Promise<TDto[]>
 
-    get(id: UUID): Promise<T>
+    get(id: any): Promise<TDto>
 
-    create(obj: T): Promise<void>
+    create(obj: TDto): Promise<void>
     
-    update(obj: T): Promise<void>
+    update(obj: TDto): Promise<void>
 
-    delete(id: UUID): Promise<void>
+    delete(id: any): Promise<void>
 }
