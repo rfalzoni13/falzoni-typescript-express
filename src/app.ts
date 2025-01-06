@@ -22,7 +22,7 @@ const port = GlobalConfiguration.port
 logMessenger.createLogInfo("Configurando o servidor")
 inversifyServer.setConfig((app) => {
     app.use('/swagger', swaggerUi.serve, swaggerUi.setup(swaggerSpec))
-    app.get("/", (req: any , res: Response) => {
+    app.get("/swagger.json", (req: any , res: Response) => {
         res.setHeader("Content-Type", "application/json");
         res.send(swaggerSpec);
       });
