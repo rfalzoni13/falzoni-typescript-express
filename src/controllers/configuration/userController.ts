@@ -4,107 +4,187 @@ import { controller, httpDelete, httpGet, httpPost, httpPut } from "inversify-ex
 import BaseControllerImpl from "../base/baseControllerImpl";
 import UserService from "../../domain/interfaces/services/configuration/userService";
 import User from "../../domain/interfaces/entities/configuration/user";
-import { ApiOperationDelete, ApiOperationGet, ApiOperationPost, ApiOperationPut, ApiPath } from "swagger-express-ts";
 import { UserDto } from "../../domain/dto/configuration/userDto";
+import { NextFunction, Request, Response } from "express";
 
-@ApiPath({
-    path: "/api/user",
-    name: "User",
-    security: { basicAuth: [] }
-})
+/**
+ * @swagger
+ * tags:
+ *   name: User
+ */
 @controller('/user')
 export default class UserController extends BaseControllerImpl<UserDto, User> {
     constructor(@inject(TYPES.UserService) service: UserService) {
         super(service)
     }
 
-    @ApiOperationGet({
-        path: "/getAll",
-        description: "Listar usuários",
-        summary: "Obtém lista de usuários",
-        responses: {
-            200: { description: "Success" }
-        }
-    })
+    /**
+     * @swagger
+     * /api/user/getAll:
+     *   get:
+     *     description: Listar usuários
+     *     summary: Obtém lista de usuários
+     *     tags: [User]
+     *     produces:
+     *       - application/json
+     *     responses:
+     *       200:
+     *         description: Success
+     */
     @httpGet('/getAll')
-    public async getAll(req: any, res: any, next: any): Promise<any> {
+    public async getAll(req: Request, res: Response, next: NextFunction): Promise<any> {
         return super.getAll(req, res, next)
     }
 
-    @ApiOperationGet({
-        path: "/get/{id}",
-        description: "Listar usuário por Id",
-        summary: "Obtém usuário pelo Id",
-        parameters: {
-            path: {
-                description: {
-                    name: "id",
-                    description: "Id do usuário"
-                }
-            }
-        },
-        responses: {
-            200: { description: "Success" }
-        }
-    })
+    /**
+     * @swagger
+     * /api/user/get/{id}:
+     *   get:
+     *     description: Listar usuário por Id
+     *     summary: Obtém usuário pelo Id
+     *     tags: [User]
+     *     produces:
+     *       - application/json
+     *     parameters:
+     *       - name: id
+     *         in: path
+     *         description: Id do usuário
+     *         required: true
+     *         type: string
+     *     responses:
+     *       200:
+     *         description: Success
+     */
     @httpGet("/get/:id")
-    public async get(req: any, res: any, next: any): Promise<any> {
+    public async get(req: Request, res: Response, next: NextFunction): Promise<any> {
         return super.get(req, res, next)
     }
 
-    @ApiOperationPost({
-        path: "/create",
-        description: "Inserir usuário",
-        summary: "Cria um novo registro de usuário",
-        parameters: {
-            body: { description: "Objeto do usuário", required: true, model: "User" }
-        },
-        responses: {
-            200: { description: "Success" },
-            400: { description: "Bad Request" }
-        }
-    })
+    /**
+     * @swagger
+     * /api/user/create:
+     *   post:
+     *     description: Inserir usuário
+     *     summary: Cria um novo registro de usuário
+     *     tags: [User]
+     *     produces:
+     *       - application/json
+     *     consumes:
+     *       - application/json
+     *     parameters:
+     *       - in: body
+     *         name: user
+     *         required: true
+     *         description: Objeto do usuário
+     *         schema:
+     *            type: object
+     *            properties:
+     *              id:
+     *                type: string
+     *                example: xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
+     *              fullName:
+     *                type: string
+     *                example: Seiya de Pégaso
+     *              userName:
+     *                type: string
+     *                example: seiyapegaso13
+     *              password:
+     *                type: string
+     *                example: Senha123
+     *              email:
+     *                type: string
+     *                example: renato.lopes.falzoni@email.com
+     *              phoneNumber:
+     *                type: string
+     *                example: (11) 92222-2222
+     *              role:
+     *                type: string
+     *                example: USER
+     *     responses:
+     *       201:
+     *         description: Created
+     *       400:
+     *         description: Bad Request
+     */
     @httpPost('/create')
-    public async create(req: any, res: any, next: any): Promise<any> {
+    public async create(req: Request, res: Response, next: NextFunction): Promise<any> {
         return super.create(req, res, next)
     }
 
-    @ApiOperationPut({
-        path: "/update",
-        description: "Atualizar usuário",
-        summary: "Atualiza o registro atual de um usuário",
-        parameters: {
-            body: { description: "Objeto do usuário", required: true, model: "User" }
-        },
-        responses: {
-            200: { description: "Success" },
-            400: { description: "Bad Request" }
-        }
-    })
+    /**
+     * @swagger
+     * /api/user/update:
+     *   put:
+     *     description: Atualizar usuário
+     *     summary: Atualiza o registro atual de um usuário
+     *     tags: [User]
+     *     produces:
+     *       - application/json
+     *     consumes:
+     *       - application/json
+     *     parameters:
+     *       - in: body
+     *         name: user
+     *         required: true
+     *         description: Objeto do usuário
+     *         schema:
+     *            type: object
+     *            properties:
+     *              id:
+     *                type: string
+     *                example: xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
+     *              fullName:
+     *                type: string
+     *                example: Seiya de Pégaso
+     *              userName:
+     *                type: string
+     *                example: seiyapegaso13
+     *              password:
+     *                type: string
+     *                example: Senha123
+     *              email:
+     *                type: string
+     *                example: renato.lopes.falzoni@email.com
+     *              phoneNumber:
+     *                type: string
+     *                example: (11) 92222-2222
+     *              role:
+     *                type: string
+     *                example: USER
+     *     responses:
+     *       200:
+     *         description: Success
+     *       400:
+     *         description: Bad Request
+     */
     @httpPut('/update')
-    public async update(req: any, res: any, next: any): Promise<any> {
+    public async update(req: Request, res: Response, next: NextFunction): Promise<any> {
         return super.update(req, res, next)
     }
 
-    @ApiOperationDelete({
-        path: "/delete/{id}",
-        description: "Excluir usuário",
-        summary: "Deleta o registro de usuário pelo Id",
-        parameters: {
-            path: {
-                description: {
-                    name: "id",
-                    description: "Id do usuário"
-                }
-            }
-        },
-        responses: {
-            200: { description: "Success" },
-            400: { description: "Bad Request" }
-        }
-    })
+    /**
+     * @swagger
+     * /api/user/delete/{id}:
+     *   delete:
+     *     description: Excluir usuário
+     *     summary: Deleta o registro de usuário pelo Id
+     *     tags: [User]
+     *     produces:
+     *       - application/json
+     *     parameters:
+     *       - name: id
+     *         in: path
+     *         description: Id do usuário
+     *         required: true
+     *         type: string
+     *     responses:
+     *       200:
+     *         description: Success
+     *       400:
+     *         description: Bad Request
+     */
     @httpDelete('/delete/:id')
-    public async delete(req: any, res: any, next: any): Promise<any> {
+    public async delete(req: Request, res: Response, next: NextFunction): Promise<any> {
         return super.delete(req, res, next)
     }
 }

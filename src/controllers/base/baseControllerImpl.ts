@@ -3,11 +3,12 @@ import BaseController from "./baseController";
 import { BaseDto } from "../../domain/dto/base/baseDto";
 import { BaseEntity } from "../../domain/interfaces/entities/base/baseEntity";
 import logMessenger from "../../utils/logMessenger";
+import { NextFunction, Request, Response } from "express";
 
 export default abstract class BaseControllerImpl<TDto extends BaseDto, TEntity extends BaseEntity> implements BaseController {    
     constructor(private service: BaseService<TDto, TEntity>) {}
 
-    public async getAll(req: any, res: any, next: any): Promise<any> {
+    public async getAll(req: Request, res: Response, next: NextFunction): Promise<any> {
         try {
             logMessenger.createLogInfo(`Obtendo requisição - endereço: ${req.originalUrl}`)
             const list = await this.service.getAll()
@@ -19,7 +20,7 @@ export default abstract class BaseControllerImpl<TDto extends BaseDto, TEntity e
         }
     }
 
-    public async get(req: any, res: any, next: any): Promise<any> {
+    public async get(req: Request, res: Response, next: NextFunction): Promise<any> {
         try {
             logMessenger.createLogInfo(`Obtendo requisição - endereço: ${req.originalUrl}`)
             const obj = await this.service.get(req.params.id)
@@ -31,7 +32,7 @@ export default abstract class BaseControllerImpl<TDto extends BaseDto, TEntity e
         }
     }
 
-    public async create(req: any, res: any, next: any): Promise<any> {
+    public async create(req: Request, res: Response, next: NextFunction): Promise<any> {
         try {
             logMessenger.createLogInfo(`Obtendo requisição - endereço: ${req.originalUrl}`)
             await this.service.create(req.body)
@@ -43,7 +44,7 @@ export default abstract class BaseControllerImpl<TDto extends BaseDto, TEntity e
         }
     }
 
-    public async update(req: any, res: any, next: any): Promise<any> {
+    public async update(req: Request, res: Response, next: NextFunction): Promise<any> {
         try {
             logMessenger.createLogInfo(`Obtendo requisição - endereço: ${req.originalUrl}`)
             await this.service.update(req.body)
@@ -55,7 +56,7 @@ export default abstract class BaseControllerImpl<TDto extends BaseDto, TEntity e
         }
     }
 
-    public async delete(req: any, res: any, next: any): Promise<any> {
+    public async delete(req: Request, res: Response, next: NextFunction): Promise<any> {
         try {
             logMessenger.createLogInfo(`Obtendo requisição - endereço: ${req.originalUrl}`)
             await this.service.delete(req.params.id)

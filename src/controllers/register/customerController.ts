@@ -4,105 +4,160 @@ import { TYPES } from "../../di/types";
 import { controller, httpDelete, httpGet, httpPost, httpPut } from "inversify-express-utils";
 import BaseControllerImpl from "../base/baseControllerImpl";
 import CustomerService from "../../domain/interfaces/services/register/customerService";
-import { ApiOperationDelete, ApiOperationGet, ApiOperationPost, ApiOperationPut, ApiPath } from "swagger-express-ts";
 import { CustomerDto } from "../../domain/dto/register/customerDto";
 
-@ApiPath({
-    path: "/api/customer",
-    name: "Customer",
-    security: { basicAuth: [] }
-})
+/**
+ * @swagger
+ * tags:
+ *   name: Customer
+ */
 @controller('/customer')
 export default class CustomerController extends BaseControllerImpl<CustomerDto, Customer> {
     constructor(@inject(TYPES.CustomerService) service: CustomerService) {
         super(service)
     }
 
-    @ApiOperationGet({
-        path: "/getAll",
-        description: "Listar clientes",
-        summary: "Obtém lista de clientes",
-        responses: {
-            200: { description: "Success" }
-        }
-    })
+    /**
+     * @swagger
+     * /api/customer/getAll:
+     *   get:
+     *     description: Listar clientes
+     *     summary: Obtém lista de clientes
+     *     tags: [Customer]
+     *     produces:
+     *       - application/json
+     *     responses:
+     *       200:
+     *         description: Success
+     */
     @httpGet('/getAll')
     public async getAll(req: any, res: any, next: any): Promise<any> {
         return super.getAll(req, res, next)
     }
 
-    @ApiOperationGet({
-        path: "/get/{id}",
-        description: "Listar cliente por Id",
-        summary: "Obtém cliente pelo Id",
-        parameters: {
-            path: {
-                description: {
-                    name: "id",
-                    description: "Id do cliente"
-                }
-            }
-        },
-        responses: {
-            200: { description: "Success" }
-        }
-    })
+    /**
+     * @swagger
+     * /api/customer/get/{id}:
+     *   get:
+     *     description: Listar cliente por Id
+     *     summary: Obtém cliente pelo Id
+     *     tags: [Customer]
+     *     produces:
+     *       - application/json
+     *     parameters:
+     *       - name: id
+     *         in: path
+     *         description: Id do cliente
+     *         required: true
+     *         type: string
+     *     responses:
+     *       200:
+     *         description: Success
+     */
     @httpGet("/get/:id")
     public async get(req: any, res: any, next: any): Promise<any> {
         return super.get(req, res, next)
     }
 
-    @ApiOperationPost({
-        path: "/create",
-        description: "Inserir cliente",
-        summary: "Cria um novo registro de cliente",
-        parameters: {
-            body: { description: "Objeto do cliente", required: true, model: "Customer" }
-        },
-        responses: {
-            200: { description: "Success" },
-            400: { description: "Bad Request" }
-        }
-    })
+    /**
+     * @swagger
+     * /api/customer/create:
+     *   post:
+     *     description: Inserir cliente
+     *     summary: Cria um novo registro de cliente
+     *     tags: [Customer]
+     *     produces:
+     *       - application/json
+     *     consumes:
+     *       - application/json
+     *     parameters:
+     *       - in: body
+     *         name: customer
+     *         required: true
+     *         description: Objeto do cliente
+     *         schema:
+     *            type: object
+     *            properties:
+     *              id:
+     *                type: string
+     *                example: xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
+     *              name:
+     *                type: string
+     *                example: Monkey D. Luffy
+     *              document:
+     *                type: string
+     *                example: 123.456.789-00
+     *     responses:
+     *       201:
+     *         description: Created
+     *       400:
+     *         description: Bad Request
+     */
     @httpPost('/create')
     public async create(req: any, res: any, next: any): Promise<any> {
         return super.create(req, res, next)
     }
 
-    @ApiOperationPut({
-        path: "/update",
-        description: "Atualizar cliente",
-        summary: "Atualiza o registro atual de um cliente",
-        parameters: {
-            body: { description: "Objeto do cliente", required: true, model: "Customer" }
-        },
-        responses: {
-            200: { description: "Success" },
-            400: { description: "Bad Request" }
-        }
-    })
+    /**
+     * @swagger
+     * /api/customer/update:
+     *   put:
+     *     description: Atualizar cliente
+     *     summary: Atualiza o registro atual de um cliente
+     *     tags: [Customer]
+     *     produces:
+     *       - application/json
+     *     consumes:
+     *       - application/json
+     *     parameters:
+     *       - in: body
+     *         name: customer
+     *         required: true
+     *         description: Objeto do cliente
+     *         schema:
+     *            type: object
+     *            properties:
+     *              id:
+     *                type: string
+     *                example: xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
+     *              name:
+     *                type: string
+     *                example: Monkey D. Luffy
+     *              document:
+     *                type: string
+     *                example: 123.456.789-00
+     *     responses:
+     *       200:
+     *         description: Success
+     *       400:
+     *         description: Bad Request
+     */
     @httpPut('/update')
     public async update(req: any, res: any, next: any): Promise<any> {
         return super.update(req, res, next)
     }
 
-    @ApiOperationDelete({
-        path: "/delete/{id}",
-        description: "Excluir cliente",
-        summary: "Deleta o registro de cliente pelo Id",
-        parameters: {
-            path: {
-                description: {
-                    name: "id",
-                    description: "Id do cliente"
-                }
-            }
-        },
-        responses: {
-            200: { description: "Success" },
-            400: { description: "Bad Request" }
-        }
-    })
+    /**
+     * @swagger
+     * /api/customer/delete/{id}:
+     *   delete:
+     *     description: Excluir cliente
+     *     summary: Deleta o registro de cliente pelo Id
+     *     tags: [Customer]
+     *     produces:
+     *       - application/json
+     *     parameters:
+     *       - name: id
+     *         in: path
+     *         description: Id do cliente
+     *         required: true
+     *         type: string
+     *     responses:
+     *       200:
+     *         description: Success
+     *       400:
+     *         description: Bad Request
+     */
     @httpDelete('/delete/:id')
     public async delete(req: any, res: any, next: any): Promise<any> {
         return super.delete(req, res, next)
