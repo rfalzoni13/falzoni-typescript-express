@@ -1,9 +1,9 @@
-import BaseService from "../../domain/interfaces/services/base/baseService";
-import { randomUUID } from "crypto";
-import BaseRepository from "../../domain/interfaces/repositories/base/baseRepository";
-import { BaseDto } from "../../domain/dto/base/baseDto";
-import { BaseEntity } from "../../domain/interfaces/entities/base/baseEntity";
-import logMessenger from "../../utils/logMessenger";
+import BaseService from "../../domain/interfaces/services/base/baseService"
+import { randomUUID } from "crypto"
+import BaseRepository from "../../domain/interfaces/repositories/base/baseRepository"
+import { BaseDto } from "../../domain/dto/base/baseDto"
+import { BaseEntity } from "../../domain/interfaces/entities/base/baseEntity"
+import logMessenger from "../../utils/logMessenger"
 
 export default class BaseServiceImpl<TDto extends BaseDto, TEntity extends BaseEntity> implements BaseService<TDto, TEntity> {
     constructor(private repository: BaseRepository<TEntity>) {

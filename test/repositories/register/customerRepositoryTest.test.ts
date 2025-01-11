@@ -1,19 +1,19 @@
-import assert from 'assert';
-import logMessenger from '../../../src/utils/logMessenger';
-import CustomerRepository from '../../../src/domain/interfaces/repositories/register/customerRepository';
+import assert from 'assert'
+import logMessenger from '../../../src/utils/logMessenger'
+import CustomerRepository from '../../../src/domain/interfaces/repositories/register/customerRepository'
 import CustomerRepositoryImpl from "../../../src/repositories/sql/register/customerRepositoryImpl"
-import Customer from '../../../src/domain/interfaces/entities/register/customer';
-import { QueryFailedError, Repository } from 'typeorm';
-import { AppDataSource } from '../../../src/db';
+import Customer from '../../../src/domain/interfaces/entities/register/customer'
+import { QueryFailedError, Repository } from 'typeorm'
+import { AppDataSource } from '../../../src/db'
 import { CustomerDto } from '../../../src/domain/dto/register/customerDto'
-import { CustomerSql } from '../../../src/domain/entities/sql/register/customerSql';
-import { randomUUID } from 'crypto';
-import { customerSeed } from '../../seeders/register/customerSeeder';
+import { CustomerSql } from '../../../src/domain/entities/sql/register/customerSql'
+import { randomUUID } from 'crypto'
+import { customerSeed } from '../../seeders/register/customerSeeder'
 
 const customerData: Repository<Customer> = AppDataSource.getRepository(CustomerSql)
 
 describe("test for customer repository", () => {
-    let repository: CustomerRepository;
+    let repository: CustomerRepository
     beforeAll(async() => {
         try {
             logMessenger.createLogInfo("Iniciando testes do repositório de cliente")

@@ -1,6 +1,6 @@
-import { Repository } from 'typeorm';
-import passwordUtil from '../../../src/utils/passwordUtil';
-import User from '../../../src/domain/interfaces/entities/configuration/user';
+import { Repository } from 'typeorm'
+import passwordUtil from '../../../src/utils/passwordUtil'
+import User from '../../../src/domain/interfaces/entities/configuration/user'
 
 export const userSeed = (data: Repository<User>) => {
     data.insert({

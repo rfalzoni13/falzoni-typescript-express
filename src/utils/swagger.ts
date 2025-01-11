@@ -1,4 +1,4 @@
-import swaggerJsdoc from "swagger-jsdoc";
+import swaggerJsdoc from "swagger-jsdoc"
 
 const options: swaggerJsdoc.Options = {
     definition: {
@@ -24,8 +24,8 @@ const options: swaggerJsdoc.Options = {
     //   ],
     },
     apis: ["./src/controllers/**/*.ts", "./src/schema/*.ts"],
-  };
+  }
   
-  const swaggerSpec = swaggerJsdoc(options);
+  const swaggerSpec = swaggerJsdoc(options)
   
-  export default swaggerSpec;
+  export default swaggerSpec

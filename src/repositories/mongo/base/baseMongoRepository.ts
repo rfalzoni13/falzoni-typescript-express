@@ -1,8 +1,8 @@
-import { MongoRepository, ObjectLiteral } from "typeorm";
-import BaseRepository from "../../../domain/interfaces/repositories/base/baseRepository";
-import { UUID } from "crypto";
-import { ObjectId } from "mongodb";
-import { QueryDeepPartialEntity } from "typeorm/query-builder/QueryPartialEntity";
+import { MongoRepository, ObjectLiteral } from "typeorm"
+import BaseRepository from "../../../domain/interfaces/repositories/base/baseRepository"
+import { UUID } from "crypto"
+import { ObjectId } from "mongodb"
+import { QueryDeepPartialEntity } from "typeorm/query-builder/QueryPartialEntity"
 
 export default class BaseMongoRepositoryImpl<TEntity extends ObjectLiteral> implements BaseRepository<TEntity> {
     constructor(private mongoData: MongoRepository<TEntity>) { }
@@ -24,7 +24,7 @@ export default class BaseMongoRepositoryImpl<TEntity extends ObjectLiteral> impl
 
     async update(obj: TEntity): Promise<void> {
         const entity: any = await this.mongoData.findOne({where: {id: obj.id}})
-        if(entity == null) throw new Error("Nenhum registro encontrado");
+        if(entity == null) throw new Error("Nenhum registro encontrado")
 
         const data = Object.assign(entity, obj)
 
@@ -33,7 +33,7 @@ export default class BaseMongoRepositoryImpl<TEntity extends ObjectLiteral> impl
 
     async delete(id: UUID): Promise<void> {
         const entity: any = await this.mongoData.findOne({where: {_id: new ObjectId(id)}})
-        if(entity == null) throw new Error("Nenhum registro encontrado");
+        if(entity == null) throw new Error("Nenhum registro encontrado")
 
         await this.mongoData!.deleteOne(entity)
     }

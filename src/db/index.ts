@@ -1,5 +1,5 @@
-import { DataSource } from "typeorm";
-import GlobalConfiguration from "../utils/globalConfiguration";
+import { DataSource } from "typeorm"
+import GlobalConfiguration from "../utils/globalConfiguration"
 
 GlobalConfiguration.loadConfiguration()
 

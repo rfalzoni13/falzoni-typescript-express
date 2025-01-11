@@ -1,19 +1,19 @@
-import assert from 'assert';
-import logMessenger from '../../../src/utils/logMessenger';
-import UserRepository from '../../../src/domain/interfaces/repositories/configuration/userRepository';
+import assert from 'assert'
+import logMessenger from '../../../src/utils/logMessenger'
+import UserRepository from '../../../src/domain/interfaces/repositories/configuration/userRepository'
 import UserRepositoryImpl from "../../../src/repositories/sql/configuration/userRepositoryImpl"
-import User from '../../../src/domain/interfaces/entities/configuration/user';
-import { QueryFailedError, Repository } from 'typeorm';
-import { AppDataSource } from '../../../src/db';
+import User from '../../../src/domain/interfaces/entities/configuration/user'
+import { QueryFailedError, Repository } from 'typeorm'
+import { AppDataSource } from '../../../src/db'
 import { UserDto } from '../../../src/domain/dto/configuration/userDto'
-import { UserSql } from '../../../src/domain/entities/sql/configuration/userSql';
-import { userSeed } from '../../seeders/configuration/userSeeder';
-import { randomUUID } from 'crypto';
+import { UserSql } from '../../../src/domain/entities/sql/configuration/userSql'
+import { userSeed } from '../../seeders/configuration/userSeeder'
+import { randomUUID } from 'crypto'
 
 const userData: Repository<User> = AppDataSource.getRepository(UserSql)
 
 describe("test for user repository", () => {
-    let repository: UserRepository;
+    let repository: UserRepository
     beforeAll(async() => {
         try {
             logMessenger.createLogInfo("Iniciando testes do repositório de usuário")

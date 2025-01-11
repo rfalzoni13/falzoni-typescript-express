@@ -5,9 +5,9 @@ import GlobalConfiguration from "./utils/globalConfiguration"
 import dependencyInjection from "./di"
 import middlewares from "./middlewares"
 import { AppDataSource } from "./db"
-import logMessenger from "./utils/logMessenger";
-import { Server } from "http";
-import swaggerUi from "swagger-ui-express";
+import logMessenger from "./utils/logMessenger"
+import { Server } from "http"
+import swaggerUi from "swagger-ui-express"
 import swaggerSpec from "./utils/swagger"
 
 
@@ -23,9 +23,9 @@ logMessenger.createLogInfo("Configurando o servidor")
 inversifyServer.setConfig((app) => {
     app.use('/swagger', swaggerUi.serve, swaggerUi.setup(swaggerSpec))
     app.get("/swagger.json", (req: any , res: Response) => {
-        res.setHeader("Content-Type", "application/json");
-        res.send(swaggerSpec);
-      });
+        res.setHeader("Content-Type", "application/json")
+        res.send(swaggerSpec)
+      })
     app.use(bodyParser.json())
     app.use(express.json())
 })

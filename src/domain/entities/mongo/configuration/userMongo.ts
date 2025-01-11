@@ -1,7 +1,7 @@
-import { Entity, ObjectIdColumn } from "typeorm";
-import { UserImpl } from "../../models/configuration/userImpl";
-import { ObjectId } from "mongodb";
-import { BaseMongoEntity } from "../../../interfaces/entities/base/baseMongoEntity";
+import { Entity, ObjectIdColumn } from "typeorm"
+import { UserImpl } from "../../models/configuration/userImpl"
+import { ObjectId } from "mongodb"
+import { BaseMongoEntity } from "../../../interfaces/entities/base/baseMongoEntity"
 
 @Entity("user")
 export class UserMongo extends UserImpl implements BaseMongoEntity {

@@ -1,7 +1,7 @@
-import { ObjectLiteral, Repository } from "typeorm";
-import { UUID } from "crypto";
-import { QueryDeepPartialEntity } from "typeorm/query-builder/QueryPartialEntity";
-import BaseRepository from "../../../domain/interfaces/repositories/base/baseRepository";
+import { ObjectLiteral, Repository } from "typeorm"
+import { UUID } from "crypto"
+import { QueryDeepPartialEntity } from "typeorm/query-builder/QueryPartialEntity"
+import BaseRepository from "../../../domain/interfaces/repositories/base/baseRepository"
 
 export default class BaseRepositoryImpl<TEntity extends ObjectLiteral> implements BaseRepository<TEntity> {
 

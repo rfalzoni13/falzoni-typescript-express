@@ -1,5 +1,5 @@
-import { BaseDto } from "../base/baseDto";
-import { UUID } from "crypto";
+import { BaseDto } from "../base/baseDto"
+import { UUID } from "crypto"
 
 export class UserDto extends BaseDto {
     public fullName?: string

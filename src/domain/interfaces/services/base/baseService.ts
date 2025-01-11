@@ -1,5 +1,5 @@
-import { BaseDto } from "../../../dto/base/baseDto";
-import { BaseEntity } from "../../entities/base/baseEntity";
+import { BaseDto } from "../../../dto/base/baseDto"
+import { BaseEntity } from "../../entities/base/baseEntity"
 
 export default interface BaseService<TDto extends BaseDto, TEntity extends BaseEntity> {
     

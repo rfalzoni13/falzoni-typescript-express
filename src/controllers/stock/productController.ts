@@ -1,12 +1,12 @@
-import Product from "../../domain/interfaces/entities/stock/product";
-import BaseController from "../base/baseController";
-import BaseControllerImpl from "../base/baseControllerImpl";
-import ProductService from "../../domain/interfaces/services/stock/productService";
-import { controller, httpDelete, httpGet, httpPost, httpPut } from "inversify-express-utils";
-import { inject } from "inversify";
-import { TYPES } from "../../di/types";
-import { ProductDto } from "../../domain/dto/stock/productDto";
-import { NextFunction, Request, Response } from "express";
+import Product from "../../domain/interfaces/entities/stock/product"
+import BaseController from "../base/baseController"
+import BaseControllerImpl from "../base/baseControllerImpl"
+import ProductService from "../../domain/interfaces/services/stock/productService"
+import { controller, httpDelete, httpGet, httpPost, httpPut } from "inversify-express-utils"
+import { inject } from "inversify"
+import { TYPES } from "../../di/types"
+import { ProductDto } from "../../domain/dto/stock/productDto"
+import { NextFunction, Request, Response } from "express"
 
 /**
  * @swagger

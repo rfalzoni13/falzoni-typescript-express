@@ -1,6 +1,6 @@
-import { Column, PrimaryColumn } from "typeorm";
-import User from "../../../interfaces/entities/configuration/user";
-import { UUID } from "crypto";
+import { Column, PrimaryColumn } from "typeorm"
+import User from "../../../interfaces/entities/configuration/user"
+import { UUID } from "crypto"
 
 export class UserImpl implements User {
     @PrimaryColumn()

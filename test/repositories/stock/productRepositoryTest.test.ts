@@ -1,19 +1,19 @@
-import assert from 'assert';
-import logMessenger from '../../../src/utils/logMessenger';
-import ProductRepository from '../../../src/domain/interfaces/repositories/stock/productRepository';
+import assert from 'assert'
+import logMessenger from '../../../src/utils/logMessenger'
+import ProductRepository from '../../../src/domain/interfaces/repositories/stock/productRepository'
 import ProductRepositoryImpl from "../../../src/repositories/sql/stock/productRepositoryImpl"
-import Product from '../../../src/domain/interfaces/entities/stock/product';
-import { QueryFailedError, Repository } from 'typeorm';
-import { AppDataSource } from '../../../src/db';
+import Product from '../../../src/domain/interfaces/entities/stock/product'
+import { QueryFailedError, Repository } from 'typeorm'
+import { AppDataSource } from '../../../src/db'
 import { ProductDto } from '../../../src/domain/dto/stock/productDto'
-import { ProductSql } from '../../../src/domain/entities/sql/stock/productSql';
-import { randomUUID } from 'crypto';
-import { productSeed } from '../../seeders/stock/productSeeder';
+import { ProductSql } from '../../../src/domain/entities/sql/stock/productSql'
+import { randomUUID } from 'crypto'
+import { productSeed } from '../../seeders/stock/productSeeder'
 
 const productData: Repository<Product> = AppDataSource.getRepository(ProductSql)
 
 describe("test for product repository", () => {
-    let repository: ProductRepository;
+    let repository: ProductRepository
     beforeAll(async() => {
         try {
             logMessenger.createLogInfo("Iniciando testes do repositório de produto")

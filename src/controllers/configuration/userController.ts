@@ -1,11 +1,11 @@
-import { inject } from "inversify";
-import { TYPES } from "../../di/types";
-import { controller, httpDelete, httpGet, httpPost, httpPut } from "inversify-express-utils";
-import BaseControllerImpl from "../base/baseControllerImpl";
-import UserService from "../../domain/interfaces/services/configuration/userService";
-import User from "../../domain/interfaces/entities/configuration/user";
-import { UserDto } from "../../domain/dto/configuration/userDto";
-import { NextFunction, Request, Response } from "express";
+import { inject } from "inversify"
+import { TYPES } from "../../di/types"
+import { controller, httpDelete, httpGet, httpPost, httpPut } from "inversify-express-utils"
+import BaseControllerImpl from "../base/baseControllerImpl"
+import UserService from "../../domain/interfaces/services/configuration/userService"
+import User from "../../domain/interfaces/entities/configuration/user"
+import { UserDto } from "../../domain/dto/configuration/userDto"
+import { NextFunction, Request, Response } from "express"
 
 /**
  * @swagger

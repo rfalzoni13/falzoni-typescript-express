@@ -1,6 +1,6 @@
-import Product from "../../../interfaces/entities/stock/product";
-import { Column, PrimaryColumn } from "typeorm";
-import { UUID } from "crypto";
+import Product from "../../../interfaces/entities/stock/product"
+import { Column, PrimaryColumn } from "typeorm"
+import { UUID } from "crypto"
 
 export class ProductImpl implements Product {
     @PrimaryColumn()

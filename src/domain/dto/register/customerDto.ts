@@ -1,5 +1,5 @@
-import { UUID } from "crypto";
-import { BaseDto } from "../base/baseDto";
+import { UUID } from "crypto"
+import { BaseDto } from "../base/baseDto"
 
 export class CustomerDto extends BaseDto {
     public name?: string

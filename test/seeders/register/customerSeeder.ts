@@ -1,5 +1,5 @@
 import { Repository } from "typeorm"
-import Customer from '../../../src/domain/interfaces/entities/register/customer';
+import Customer from '../../../src/domain/interfaces/entities/register/customer'
 
 export const customerSeed = (data: Repository<Customer>) => {
     data.insert({

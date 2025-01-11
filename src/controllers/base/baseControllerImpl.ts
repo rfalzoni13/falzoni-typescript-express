@@ -1,9 +1,9 @@
-import BaseService from "../../domain/interfaces/services/base/baseService";
-import BaseController from "./baseController";
-import { BaseDto } from "../../domain/dto/base/baseDto";
-import { BaseEntity } from "../../domain/interfaces/entities/base/baseEntity";
-import logMessenger from "../../utils/logMessenger";
-import { NextFunction, Request, Response } from "express";
+import BaseService from "../../domain/interfaces/services/base/baseService"
+import BaseController from "./baseController"
+import { BaseDto } from "../../domain/dto/base/baseDto"
+import { BaseEntity } from "../../domain/interfaces/entities/base/baseEntity"
+import logMessenger from "../../utils/logMessenger"
+import { NextFunction, Request, Response } from "express"
 
 export default abstract class BaseControllerImpl<TDto extends BaseDto, TEntity extends BaseEntity> implements BaseController {    
     constructor(private service: BaseService<TDto, TEntity>) {}

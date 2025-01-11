@@ -1,10 +1,10 @@
-import Customer from "../../domain/interfaces/entities/register/customer";
-import { inject } from "inversify";
-import { TYPES } from "../../di/types";
-import { controller, httpDelete, httpGet, httpPost, httpPut } from "inversify-express-utils";
-import BaseControllerImpl from "../base/baseControllerImpl";
-import CustomerService from "../../domain/interfaces/services/register/customerService";
-import { CustomerDto } from "../../domain/dto/register/customerDto";
+import Customer from "../../domain/interfaces/entities/register/customer"
+import { inject } from "inversify"
+import { TYPES } from "../../di/types"
+import { controller, httpDelete, httpGet, httpPost, httpPut } from "inversify-express-utils"
+import BaseControllerImpl from "../base/baseControllerImpl"
+import CustomerService from "../../domain/interfaces/services/register/customerService"
+import { CustomerDto } from "../../domain/dto/register/customerDto"
 
 /**
  * @swagger
