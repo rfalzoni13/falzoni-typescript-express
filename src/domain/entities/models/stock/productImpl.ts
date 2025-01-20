@@ -7,6 +7,7 @@ export class ProductImpl implements Product {
     id?: UUID
 
     @Column({
+        nullable: false,
         length: 512
     })
     public name?: string
