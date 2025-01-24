@@ -9,19 +9,22 @@ const options: swaggerJsdoc.Options = {
         version: "1.0",
       },
       components: {
-        // securitySchemes: {
-        //   bearerAuth: {
-        //     type: "http",
-        //     scheme: "bearer",
-        //     bearerFormat: "JWT",
-        //   },
-        // },
-      }
-    //   security: [
-    //     {
-    //       bearerAuth: [],
-    //     },
-    //   ],
+        securitySchemes: {
+          Bearer: {
+            name: "Authorization",
+            description: "Token de autorização (JWT) a ser inserido",
+            in: "header",
+            type: "apiKey",
+            scheme: "bearer",
+            bearerFormat: "JWT",
+          },
+        },
+      },
+      security: [
+        {
+          Bearer: [],
+        },
+      ],
     },
     apis: ["./src/controllers/**/*.ts", "./src/schema/*.ts"],
   }
