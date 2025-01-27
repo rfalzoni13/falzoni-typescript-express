@@ -6,7 +6,7 @@ const options: swaggerJsdoc.Options = {
       info: {
         title: "Api Falzoni Express TS",
         description: "Api de serviços com Node.js, Express e TypeScript",
-        version: "1.0",
+        version: "v1",
       },
       components: {
         securitySchemes: {
