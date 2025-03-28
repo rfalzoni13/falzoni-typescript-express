@@ -7,13 +7,11 @@ export class ProductImpl implements Product {
     id?: UUID
 
     @Column({
-        nullable: false,
         length: 512
     })
     public name?: string
 
     @Column({
-        nullable: false,
         type: "decimal",
         precision: 18,
         scale: 2
@@ -21,9 +19,21 @@ export class ProductImpl implements Product {
     public price?: number
 
     @Column({
+        nullable: true,
         type: "decimal",
         precision: 18,
         scale: 2
     })
     public discount?: number
+
+    @Column({
+        type: "datetime"
+    })
+    public created?: Date
+
+    @Column({
+        nullable: true,
+        type: "datetime"
+    })
+    public modified?: Date
 }

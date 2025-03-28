@@ -24,7 +24,7 @@ inversifyServer.setConfig((app) => {
     app.use('/swagger', swaggerUi.serve, swaggerUi.setup(swaggerSpec))
     app.get("/swagger.json", (req: any , res: Response) => {
         res.setHeader("Content-Type", "application/json")
-        res.send(swaggerSpec)
+        res.json(swaggerSpec)
       })
     app.use(bodyParser.json())
     app.use(express.json())

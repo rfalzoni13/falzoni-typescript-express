@@ -28,7 +28,15 @@ export default class CustomerController extends BaseControllerImpl<CustomerDto, 
      *       - application/json
      *     responses:
      *       200:
-     *         description: Success
+     *         description: Success.
+     *         content:
+     *           application/json:
+     *             schema:
+     *               type: array
+     *               items:
+     *                 $ref: '#/components/schemas/customerSchema'
+     *       400:
+     *         description: Bad Request
      */
     @httpGet('/getAll')
     public async getAll(req: any, res: any, next: any): Promise<any> {
@@ -52,7 +60,13 @@ export default class CustomerController extends BaseControllerImpl<CustomerDto, 
      *         type: string
      *     responses:
      *       200:
-     *         description: Success
+     *         description: Success.
+     *         content:
+     *           application/json:
+     *             schema:
+     *               $ref: '#/components/schemas/customerSchema'
+     *       400:
+     *         description: Bad Request
      */
     @httpGet("/get/:id")
     public async get(req: any, res: any, next: any): Promise<any> {
@@ -76,17 +90,7 @@ export default class CustomerController extends BaseControllerImpl<CustomerDto, 
      *         required: true
      *         description: Objeto do cliente
      *         schema:
-     *            type: object
-     *            properties:
-     *              id:
-     *                type: string
-     *                example: xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
-     *              name:
-     *                type: string
-     *                example: Monkey D. Luffy
-     *              document:
-     *                type: string
-     *                example: 123.456.789-00
+     *            $ref: '#/components/schemas/customerSchema'
      *     responses:
      *       201:
      *         description: Created
@@ -115,17 +119,7 @@ export default class CustomerController extends BaseControllerImpl<CustomerDto, 
      *         required: true
      *         description: Objeto do cliente
      *         schema:
-     *            type: object
-     *            properties:
-     *              id:
-     *                type: string
-     *                example: xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
-     *              name:
-     *                type: string
-     *                example: Monkey D. Luffy
-     *              document:
-     *                type: string
-     *                example: 123.456.789-00
+     *            $ref: '#/components/schemas/customerSchema'
      *     responses:
      *       200:
      *         description: Success

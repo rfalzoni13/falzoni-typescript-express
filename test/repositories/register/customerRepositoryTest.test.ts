@@ -42,13 +42,13 @@ describe("test for customer repository", () => {
     })
 
     test('should be return success when create customer', async () => {
-        const dto = new CustomerDto(randomUUID(), "Ikki de Fênix", "654-789-445-01")
+        const dto = new CustomerDto(randomUUID(), "Ikki de Fênix", "654-789-445-01", new Date(), null)
         const customer = Object.assign(dto)
         await repository.create(customer)
     })
 
     test('should be return failure when create customer', async () => {
-        const dto = new CustomerDto(randomUUID(), null, null)
+        const dto = new CustomerDto(randomUUID(), null, null, null, null)
         const customer = Object.assign(dto)
         expect(async() => await repository.create(customer)).rejects.toThrow(QueryFailedError)
     })
@@ -57,6 +57,7 @@ describe("test for customer repository", () => {
         const customer = await repository.get("610b1b76-a278-4f88-8d6d-4c33c831b2da")
         customer.name = "Barata tonta"
         customer.document = "655.498.772-47"
+        customer.modified = new Date()
         await repository.update(customer)
     })
 

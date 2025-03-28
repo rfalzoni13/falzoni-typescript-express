@@ -1,4 +1,5 @@
 import swaggerJsdoc from "swagger-jsdoc"
+import schemas from "../schemas"
 
 const options: swaggerJsdoc.Options = {
     definition: {
@@ -9,6 +10,7 @@ const options: swaggerJsdoc.Options = {
         version: "v1",
       },
       components: {
+        schemas: schemas,
         securitySchemes: {
           Bearer: {
             name: "Authorization",

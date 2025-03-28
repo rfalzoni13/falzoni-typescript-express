@@ -29,7 +29,15 @@ export default class UserController extends BaseControllerImpl<UserDto, User> {
      *       - application/json
      *     responses:
      *       200:
-     *         description: Success
+     *         description: Success.
+     *         content:
+     *           application/json:
+     *             schema:
+     *               type: array
+     *               items:
+     *                 $ref: '#/components/schemas/userSchema'
+     *       400:
+     *         description: Bad Request.
      */
     @httpGet('/getAll')
     public async getAll(req: Request, res: Response, next: NextFunction): Promise<any> {
@@ -53,7 +61,13 @@ export default class UserController extends BaseControllerImpl<UserDto, User> {
      *         type: string
      *     responses:
      *       200:
-     *         description: Success
+     *         description: Success.
+     *         content:
+     *           application/json:
+     *             schema:
+     *               $ref: '#/components/schemas/userSchema'
+     *       400:
+     *         description: Bad Request.
      */
     @httpGet("/get/:id")
     public async get(req: Request, res: Response, next: NextFunction): Promise<any> {
@@ -77,29 +91,7 @@ export default class UserController extends BaseControllerImpl<UserDto, User> {
      *         required: true
      *         description: Objeto do usuário
      *         schema:
-     *            type: object
-     *            properties:
-     *              id:
-     *                type: string
-     *                example: xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
-     *              fullName:
-     *                type: string
-     *                example: Seiya de Pégaso
-     *              userName:
-     *                type: string
-     *                example: seiyapegaso13
-     *              password:
-     *                type: string
-     *                example: Senha123
-     *              email:
-     *                type: string
-     *                example: renato.lopes.falzoni@email.com
-     *              phoneNumber:
-     *                type: string
-     *                example: (11) 92222-2222
-     *              role:
-     *                type: string
-     *                example: USER
+     *           $ref: '#/components/schemas/userSchema'
      *     responses:
      *       201:
      *         description: Created
@@ -128,29 +120,7 @@ export default class UserController extends BaseControllerImpl<UserDto, User> {
      *         required: true
      *         description: Objeto do usuário
      *         schema:
-     *            type: object
-     *            properties:
-     *              id:
-     *                type: string
-     *                example: xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
-     *              fullName:
-     *                type: string
-     *                example: Seiya de Pégaso
-     *              userName:
-     *                type: string
-     *                example: seiyapegaso13
-     *              password:
-     *                type: string
-     *                example: Senha123
-     *              email:
-     *                type: string
-     *                example: renato.lopes.falzoni@email.com
-     *              phoneNumber:
-     *                type: string
-     *                example: (11) 92222-2222
-     *              role:
-     *                type: string
-     *                example: USER
+     *           $ref: '#/components/schemas/userSchema'
      *     responses:
      *       200:
      *         description: Success

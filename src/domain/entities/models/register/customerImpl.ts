@@ -7,14 +7,23 @@ export class CustomerImpl implements Customer {
     id?: UUID
 
     @Column({
-        nullable: false,
         length: 128
     })
     public name?: string
 
     @Column({
-        nullable: false,
         length: 20
     })
     public document?: string
+
+    @Column({
+        type: "datetime"
+    })
+    public created?: Date
+
+    @Column({
+        nullable: true,
+        type: "datetime"
+    })
+    public modified?: Date
 }

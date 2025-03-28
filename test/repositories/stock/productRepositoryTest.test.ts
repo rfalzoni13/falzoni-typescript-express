@@ -42,13 +42,13 @@ describe("test for product repository", () => {
     })
 
     test('should be return success when create product', async () => {
-        const dto = new ProductDto(randomUUID(), "Camiseta Polo Xadrez", 19.99, 0.00)
+        const dto = new ProductDto(randomUUID(), "Camiseta Polo Xadrez", 19.99, 0.00, new Date(), null)
         const product = Object.assign(dto)
         await repository.create(product)
     })
 
     test('should be return failure when create product', async () => {
-        const dto = new ProductDto(randomUUID(), null, null, null)
+        const dto = new ProductDto(randomUUID(), null, null, null, null, null)
         const product = Object.assign(dto)
         expect(async() => await repository.create(product)).rejects.toThrow(QueryFailedError)
     })
@@ -58,6 +58,7 @@ describe("test for product repository", () => {
         product.name = "Caderno Barbie"
         product.price = 49.99
         product.discount = 5.00
+        product.modified = new Date()
         await repository.update(product)
     })
 

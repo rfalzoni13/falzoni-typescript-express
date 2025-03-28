@@ -7,13 +7,11 @@ export class UserImpl implements User {
     id?: UUID
 
     @Column({
-        nullable: false,
         length: 256
     })
     public fullName?: string
 
     @Column({
-        nullable: false,
         length: 256
     })
     public userName?: string
@@ -24,20 +22,17 @@ export class UserImpl implements User {
     public password?: string
 
     @Column({
-        nullable: false,
         length: 256
     })
     public email?: string
 
     @Column({
-        nullable: false,
         length: 128
     })
     public phoneNumber?: string
 
     @Column({
         length: 20,
-        nullable: false
     })
     public role?: string
 }

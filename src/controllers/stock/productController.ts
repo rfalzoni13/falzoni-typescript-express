@@ -30,7 +30,15 @@ export default class ProductController extends BaseControllerImpl<ProductDto, Pr
      *       - application/json
      *     responses:
      *       200:
-     *         description: Success
+     *         description: Success.
+     *         content:
+     *           application/json:
+     *             schema:
+     *               type: array
+     *               items:
+     *                 $ref: '#/components/schemas/productSchema'
+     *       400:
+     *         description: Bad Request
      */
     @httpGet('/getAll')
     public async getAll(req: Request, res: Response, next: NextFunction): Promise<any> {
@@ -54,7 +62,13 @@ export default class ProductController extends BaseControllerImpl<ProductDto, Pr
      *         type: string
      *     responses:
      *       200:
-     *         description: Success
+     *         description: Success.
+     *         content:
+     *           application/json:
+     *             schema:
+     *               $ref: '#/components/schemas/productSchema'
+     *       400:
+     *         description: Bad Request
      */
     @httpGet("/get/:id")
     public async get(req: Request, res: Response, next: NextFunction): Promise<any> {
@@ -78,20 +92,7 @@ export default class ProductController extends BaseControllerImpl<ProductDto, Pr
      *         required: true
      *         description: Objeto do produto
      *         schema:
-     *            type: object
-     *            properties:
-     *              id:
-     *                type: string
-     *                example: xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
-     *              name:
-     *                type: string
-     *                example: Vídeo Game PolyStation
-     *              price:
-     *                type: number
-     *                example: 399.99
-     *              discount:
-     *                type: number
-     *                example: 0.5
+     *            $ref: '#/components/schemas/productSchema'
      *     responses:
      *       201:
      *         description: Created
@@ -120,20 +121,7 @@ export default class ProductController extends BaseControllerImpl<ProductDto, Pr
      *         required: true
      *         description: Objeto do produto
      *         schema:
-     *            type: object
-     *            properties:
-     *              id:
-     *                type: string
-     *                example: xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
-     *              name:
-     *                type: string
-     *                example: Vídeo Game PolyStation
-     *              price:
-     *                type: number
-     *                example: 399.99
-     *              discount:
-     *                type: number
-     *                example: 0.5
+     *            $ref: '#/components/schemas/productSchema'
      *     responses:
      *       200:
      *         description: Success
